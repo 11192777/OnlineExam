@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.TeacherDao">
+	
+	<!-- public void insertTeacher(TeacherBean Teacher); -->
+	<insert id="insertTeacher">
+		INSERT INTO t_teacher (
+			user_id,
+			tea_name,
+			tea_sex,
+			tea_major,
+			tea_age,
+			tea_phone
+		)
+		VALUE
+			(#{userId}, #{teaName}, #{teaSex}, #{teaMajor}, #{teaAge}, #{teaPhone})
+	</insert>
+	
+	<!-- public void deleteTeacherById(String userId); -->
+	<delete id="deleteTeacherById">
+		DELETE
+		FROM
+			t_teacher
+		WHERE
+			user_id = #{userId}
+	</delete>
+	
+	<!-- public List<TeacherBean> queryTeacherList(); -->
+	<select id="queryTeacherList" resultType="pers.sdd.online.exam.bean.TeacherBean">
+		SELECT
+			*
+		FROM
+			t_teacher
+	</select>
+	
+	<!-- public void queryTeacherById(String teaId); -->
+	<select id="queryTeacherById" resultType="pers.sdd.online.exam.bean.TeacherBean">
+		SELECT
+			*
+		FROM
+			t_teacher
+		WHERE
+			user_id = #{teaId}
+	</select>
+	
+	<!-- public List<TeacherBean> queryFuzzyTeacherList(String userId); -->
+	<select id="queryFuzzyTeacherList" resultType="pers.sdd.online.exam.bean.TeacherBean">
+		SELECT
+			*
+		FROM
+			t_teacher
+		WHERE
+			user_id LIKE concat('%', #{queryText} , '%')
+	</select>		
+</mapper>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.StudentDao">
+	
+	<!-- public void insertStudent(StudentBean student); -->
+	<insert id="insertStudent">
+		INSERT INTO t_student (
+			user_id,
+			stu_name,
+			stu_sex,
+			stu_major,
+			stu_grade,
+			stu_age
+		)
+		VALUE
+			(#{userId}, #{stuName}, #{stuSex}, #{stuMajor}, #{stuGrade}, #{stuAge})
+	</insert>
+	
+	<!-- public void deleteStudentById(String userId); -->
+	<delete id="deleteStudentById">
+		DELETE
+		FROM
+			t_student
+		WHERE
+			user_id = #{userId}
+	</delete>
+	
+	<!-- public List<StudentBean> queryStudentList(); -->
+	<select id="queryStudentList" resultType="pers.sdd.online.exam.bean.StudentBean">
+		SELECT
+			*
+		FROM
+			t_student
+	</select>
+	
+	<!-- public List<StudentBean> queryFuzzyStudentList(String userId); -->
+	<select id="queryFuzzyStudentList" resultType="pers.sdd.online.exam.bean.StudentBean">
+		SELECT
+			*
+		FROM
+			t_student
+		WHERE
+			user_id LIKE concat('%', #{queryText} , '%')
+	</select>		
+</mapper>

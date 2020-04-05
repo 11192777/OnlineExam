@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.TeacherPaperDao">
+	
+	<!-- void insertRef(TeacherPaper ref); -->
+	<insert id="insertRef">
+		INSERT INTO r_teacher_paper (
+			tea_id,
+			pap_id,
+			join_time
+		)
+		VALUE
+			(#{teaId}, #{papId}, #{joinTime})
+	</insert>
+	
+	<!-- void deleteRef(TeacherPaper ref); -->
+	<delete id="deleteRef">
+		DELETE 
+		FROM
+			r_teacher_paper
+		WHERE
+			pap_id = #{papId} AND tea_id = #{teaId}
+	</delete>
+	
+	<!-- ArrayList<TeacherPaper> queryPaperListByTeaId(String teacherId); -->
+	<select id="queryPaperListByTeaId" resultType="pers.sdd.online.exam.bean.TeacherPaper">
+		SELECT
+			*
+		FROM
+			r_teacher_paper
+		WHERE
+			tea_id = #{teacherId}
+	</select>
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.MajorDao">
+	
+	<!-- void insertMajor(MajorBean major); -->
+	<insert id="insertMajor">
+		INSERT INTO t_major(
+			maj_name,
+			maj_phone
+		)
+		VALUE
+		(#{majName}, #{majPhone})
+	</insert>
+	
+	<!-- void deleteMajorByName(String majorName); -->
+	<delete id="deleteMajorByName">
+		DELETE 
+		FROM
+			t_major
+		WHERE
+			maj_name = #{majorName}
+	</delete>
+	
+	
+	<!-- void updateMajorByName(Map<String, Object> paramMap); -->
+	<update id="updateMajorByName">
+		UPDATE t_major
+		SET maj_name = #{major.majName},
+			maj_phone = #{major.majPhone}
+		WHERE
+			maj_name = #{oldMajorName}
+	</update>
+	
+	<!-- List<MajorBean> queryMajorList();-->
+	<select id="queryMajorList" resultType="pers.sdd.online.exam.bean.MajorBean">
+		SELECT 
+			*
+		FROM 
+			t_major
+	</select>
+</mapper>

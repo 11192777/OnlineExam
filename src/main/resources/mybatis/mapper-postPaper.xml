@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.PaperPostDao">
+	
+	<!-- void insertPostPaper(PaperPostBean post); -->
+	<insert id="insertPostPaper">
+		INSERT INTO t_paper_post(
+			pap_id,
+			pap_title,
+			exam_time,
+			start_time,
+			end_time,
+			tea_id,
+			cla_id
+		)
+		VALUE
+		(#{papId}, #{papTitle}, #{examTime}, #{startTime}, #{endTime}, #{teaId}, #{claId})
+	</insert>
+	
+	<!-- ArrayList<PaperPostBean> queryExamByStudentId(String studentId); -->
+	<select id="queryExamByStudentId" resultType="pers.sdd.online.exam.bean.PaperPostBean">
+		SELECT
+			*
+		FROM
+			t_paper_post
+		WHERE
+		cla_id IN (
+			SELECT
+				cla_id
+			FROM
+				r_class_student
+			WHERE
+				stu_id = #{studentId}
+		)
+		
+	</select>
+	 
+</mapper>

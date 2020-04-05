@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.CourseDao">
+	
+	<!-- void insertCourse(CourseBean courseName); -->
+	<insert id="insertCourse">
+		INSERT INTO	t_course (
+			cou_name,
+			cou_major,
+			cou_update
+		)
+		VALUE
+			(#{couName}, #{couMajor}, #{couUpdate})
+	</insert>
+	
+	<!-- void deleteCourseById(String courseId); -->
+	<delete id="deleteCourseById">
+		DELETE
+		FROM
+			t_course
+		WHERE
+			cou_id = #{couId}
+	</delete>
+	
+	<!-- void updateIncrementId(); -->
+	<update id="updateIncrementId">
+		UPDATE t_course AS t1
+		JOIN (
+			SELECT
+				cou_id,
+				(@rowno :=@rowno + 1) AS rowno
+			FROM
+				t_course a,
+				(SELECT(@rowno := 0)) b
+			ORDER BY
+				a.cou_id
+		) AS t2
+		SET t1.cou_id = t2.rowno
+		WHERE
+			t1.cou_id = t2.cou_id;
+	</update>	
+	
+	<!-- void updateCourse(CourseBean course); -->
+	<update id="updateCourse">
+		UPDATE t_course
+		SET cou_major = #{couMajor},
+			cou_name = #{couName},
+ 			cou_update = #{couUpdate}
+		WHERE
+			cou_id = #{couId}
+	</update>
+	
+	<!-- void alterAutoIncrementId(Integer startId); -->
+	<update id="alterAutoIncrementId">
+		ALTER TABLE t_course AUTO_INCREMENT = #{startId};
+	</update>
+	
+	<!-- Integer queryCourseTotal(); -->
+	<select id="queryCourseTotal" resultType="java.lang.Integer">
+		SELECT 
+			count(cou_id)
+		FROM
+			t_course
+	</select>
+	
+	<!-- CourseBean queryCourseById(Integer couId); -->
+	<select id="queryCourseById" resultType="pers.sdd.online.exam.bean.CourseBean">
+		SELECT 
+			*
+		FROM
+			t_course
+		WHERE cou_id = #{couId}
+	</select>
+
+	<!-- 	CourseBean queryCourseByNameAndMajor(CourseBean course); -->
+	<select id="queryCourseByNameAndMajor" resultType="pers.sdd.online.exam.bean.CourseBean">
+		SELECT 
+			*
+		FROM
+			t_course
+		WHERE cou_major = #{couMajor} AND cou_name = #{couName}
+	
+	</select>
+	
+	<!-- PageBean<CourseBean> queryCourseList(); -->
+	<select id="queryCourseList" resultType="pers.sdd.online.exam.bean.CourseBean">
+		SELECT
+			*
+		FROM
+			t_course
+	</select>
+	
+	<!-- List<CourseBean> queryCourseByMajorName(String majorName); -->
+	<select id="queryCourseByMajorName" resultType="pers.sdd.online.exam.bean.CourseBean">
+		SELECT
+			*
+		FROM
+			t_course
+		WHERE
+			cou_major = #{majorName}
+	</select>
+	
+</mapper>

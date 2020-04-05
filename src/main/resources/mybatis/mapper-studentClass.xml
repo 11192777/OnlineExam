@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="pers.sdd.online.exam.dao.StudentClassDao">
+
+	<!-- void insertRefJoin(StudentClass refStudentClass); -->
+	<insert id="insertRefJoin">
+		INSERT INTO r_class_student (
+			stu_id,
+			cla_id,
+			join_time
+		)
+		VALUE
+			(#{stuId}, #{claId}, #{joinTime})
+	</insert>
+	
+	<!-- void deleteRef(String studentId, String classId); -->
+	<delete id="deleteRef">
+		DELETE
+		FROM
+			r_class_student
+		WHERE
+			stu_id = #{param1} AND cla_id = #{param2}
+	</delete>
+	
+	<!-- void deleteClassRef(String classId); -->
+	<delete id="deleteClassRef">
+		DELETE
+		FROM
+			r_class_student
+		WHERE
+			cla_id = #{classId}
+	</delete>
+	
+	<!-- List<StudentClass> queryStudentJionById(String studentId); -->
+	<select id="queryStudentJionById" resultMap="getClassBean">
+		SELECT 
+			*
+		FROM 
+			r_class_student
+		WHERE
+			stu_id = (#{studentId})
+	</select>
+	<resultMap type="pers.sdd.online.exam.bean.StudentClass" id="getClassBean">
+		<id column="cla_id" property="claId"/>
+		<id column="stu_id" property="stuId"/>
+		<result column="join_time" property="joinTime"/>
+		
+		<association property="classBean"
+			select="pers.sdd.online.exam.dao.ClassDao.queryClassByClassId"
+			column="cla_id">
+		</association>
+	</resultMap>
+</mapper>
