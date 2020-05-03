@@ -3,7 +3,7 @@
 	<div class="container">
 		<div class="navbar-header">
 			<div>
-				<a class="navbar-brand" href="${APP_PATH}/index/login" style="font-size:32px;">在线考试系统</a>
+				<a class="navbar-brand" href="${APP_PATH}/index/login" style="font-size:32px;">在线答题系统</a>
 			</div>
 		</div>
 	</div>
