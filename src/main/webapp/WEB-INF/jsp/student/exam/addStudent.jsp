@@ -38,14 +38,14 @@
 								<li style="height:30px;"><a href="${APP_PATH}/paper/paperList"><i class="glyphicon glyphicon-check"></i> 试卷列表</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/paper/importPaper"><i class="glyphicon glyphicon-check"></i> 导入试卷</a></li>
 							</ul></li>
-						<li class="list-group-item "><span><i class="glyphicon glyphicon-ok"></i> 题库管理 <span class="badge" style="float:right">3</span></span>
-							<ul style="margin-top:10px;">
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 题库管理 <span class="badge" style="float:right">3</span></span>
+							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/manager/itemBank/itemList"><i class="glyphicon glyphicon-check"></i> 试题列表</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/manager/itemBank/itemAdd"><i class="glyphicon glyphicon-check"></i> 添加试题</a></li>
 							</ul></li>
 						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 成绩管理 <span class="badge" style="float:right">3</span></span>
 							<ul style="margin-top:10px;display:none;">
-								<li style="height:30px;"><a href="${APP_PATH}/grade/allGrade"><i class="glyphicon glyphicon-check"></i> 学生成绩查看</a></li>
+								<li style="height:30px;"><a href="auth_cert.html"><i class="glyphicon glyphicon-check"></i> 学生成绩查看</a></li>
 								<li style="height:30px;"><a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 成绩单打印</a></li>
 							</ul></li>
 						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 学年管理 <span class="badge" style="float:right">3</span></span>
@@ -77,7 +77,7 @@
 					<div class="panel-body">
 						<form role="form">
 							<div class="form-group">
-								<label for="exampleInputPassword1">题目</label> <input type="text" class="form-control" autofocus="autofocus" id="userId" placeholder="请输入登陆账号">
+								<label for="exampleInputPassword1">用户名</label> <input type="text" class="form-control" autofocus="autofocus" id="userId" placeholder="请输入登陆账号">
 								<p class="help-block label label-warning">用户名有4-10位字母和数字组成，请输入正确的用户名</p>
 							</div>
 							<div class="form-group">

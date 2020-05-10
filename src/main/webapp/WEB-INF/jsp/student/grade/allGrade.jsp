@@ -17,12 +17,12 @@
 	cursor: pointer;
 }
 
-.tree-closed {
-	height: 40px;
+table tbody tr:nth-child(odd) {
+	background: #F4F4F4;
 }
 
-.tree-expanded {
-	height: auto;
+table tbody td:nth-child(even) {
+	color: #C00;
 }
 </style>
 </head>
@@ -48,36 +48,36 @@
 				</div>
 			</div>
 			<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-				<h1 class="page-header">控制面板</h1>
-
-				<div class="row placeholders">
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title">
+							<i class="glyphicon glyphicon-th"></i> 考试列表
+						</h3>
 					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img data-src="holder.js/200x200/auto/sky" class="img-responsive" alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
-					</div>
-					<div class="col-xs-6 col-sm-3 placeholder">
-						<img data-src="holder.js/200x200/auto/vine" class="img-responsive" alt="Generic placeholder thumbnail">
-						<h4>Label</h4>
-						<span class="text-muted">Something else</span>
+					<div class="panel-body">
+						<div class="table-responsive">
+							<table class="table  table-bordered">
+								<thead>
+									<tr>
+										<th>学号</th>
+										<th>试卷标题</th>
+										<th>科目</th>
+										<th>成绩</th>
+									</tr>
+								</thead>
+								<tbody id="dataBody"></tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 	<script src="${APP_PATH}/jquery/jquery-2.1.1.min.js"></script>
 	<script src="${APP_PATH}/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${APP_PATH}/script/docs.min.js"></script>
+	<script src="${APP_PATH}/layer/layer.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			$(".list-group-item").click(function() {
@@ -90,6 +90,50 @@
 					}
 				}
 			});
+			pageQuery();
+		})
+	
+	
+		function pageQuery() {
+			$.ajax({
+				type : "POST",
+				url : "${APP_PATH}/grade/ajax/allGrade",
+				data : {
+					"studentId" : "${loginUser.userId}",
+				},
+				beforeSend : function() {
+					index = layer.load(2, {
+						time : 10 * 1000
+					});
+				},
+				success : function(result) {
+					layer.close(index);
+					if (result.success) {
+						var datas = result.data;
+						var context = ""
+						for (var i = 0; i < datas.length; i++) {
+							var data = datas[i];
+							context += '<tr>';
+							context += '	<td>' + data.stuId + '</td>';
+							context += '	<td>' + data.paperName + '</td>';
+							context += '	<td>' + data.courseName + '</td>';
+							context += '	<td>' + data.papScore + '</td>';
+							context += '</tr>';
+						}
+						$("#dataBody").html(context);
+					} else {
+						layer.msg("页面加载失败", {
+							time : 2000,
+							icon : 5,
+							shift : 6
+						}, function() {});
+					}
+				}
+			});
+		}
+	
+		$("#queryButton").click(function() {
+			pageQuery($("#queryText").val())
 		});
 	</script>
 </body>

@@ -52,6 +52,49 @@
 	<script src="${APP_PATH}/layer/layer.js"></script>
 	<script>
 		function doLogin() {
+			var userId = $("#userId").val();
+			var passwd = $("#userPasswd").val();
+			if (userId == "") {
+				layer.msg("请输入用户名", {
+					time : 1000,
+					icon : 5,
+					shift : 6
+				}, function() {
+					//消息关闭执行此逻辑
+				})
+				return;
+			}
+			if (userId.length < 5 || userId.length > 8) {
+				layer.msg("用户名格式错误", {
+					time : 1000,
+					icon : 5,
+					shift : 6
+				}, function() {
+					//消息关闭执行此逻辑
+				})
+				return;
+			}
+			if (passwd == "" || passwd == null) {
+				layer.msg("请输入密码", {
+					time : 1000,
+					icon : 5,
+					shift : 6
+				}, function() {
+					//消息关闭执行此逻辑
+				})
+				return;
+			}
+			if (passwd.length < 6 || userId.length > 16) {
+				layer.msg("密码格式错误", {
+					time : 1000,
+					icon : 5,
+					shift : 6
+				}, function() {
+					//消息关闭执行此逻辑
+				})
+				return;
+			}
+	
 			$.ajax({
 				type : "POST",
 				url : "${APP_PATH}/index/doLogin",

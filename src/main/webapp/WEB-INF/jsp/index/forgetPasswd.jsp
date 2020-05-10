@@ -21,28 +21,15 @@
 
 		<form class="form-signin" role="form">
 			<h2 class="form-signin-heading">
-				<i class="glyphicon glyphicon-log-in"></i> 用户注册
+				<i class="glyphicon glyphicon-log-in"></i> 找回密码
 			</h2>
 			<div class="form-group has-success has-feedback">
 				<input type="text" id="userName" class="form-control" id="inputSuccess4" placeholder="请输入登录账号" autofocus> <span class="glyphicon glyphicon-yen form-control-feedback"></span>
 			</div>
 			<div class="form-group has-success has-feedback">
-				<input type="password" id="userPasswd1" class="form-control" id="inputSuccess4" placeholder="请输入登录密码" style="margin-top:10px;"> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+				<input type="text" id="email" class="form-control" id="inputSuccess4" placeholder="请输入邮箱地址（接收新密码）" style="margin-top:10px;"> <span class="glyphicon glyphicon glyphicon-envelope form-control-feedback"></span>
 			</div>
-			<div class="form-group has-success has-feedback">
-				<input type="password" id="userPasswd2" class="form-control" id="inputSuccess4" placeholder="请再次输入登录密码" style="margin-top:10px;"> <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-			</div>
-			
-			<div class="form-group has-success has-feedback">
-				<input type="text" id="email" class="form-control" id="inputSuccess4" placeholder="请输入邮箱地址" style="margin-top:10px;"> <span class="glyphicon glyphicon glyphicon-envelope form-control-feedback"></span>
-			</div>
-			<div class="form-group has-success has-feedback">
-				<select class="form-control" id="userType">
-					<option value="2">学生</option>
-					<option value="1">教师</option>
-				</select>
-			</div>
-			<a class="btn btn-lg btn-success btn-block" onclick="doRegister()"> 点击注册</a>
+			<a class="btn btn-lg btn-success btn-block" onclick="doRegister()"> 点击发送</a>
 		</form>
 	</div>
 	<script src="${APP_PATH}/jquery/jquery-2.1.1.min.js"></script>

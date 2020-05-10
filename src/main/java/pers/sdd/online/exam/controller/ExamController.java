@@ -3,10 +3,13 @@ package pers.sdd.online.exam.controller;
 import java.sql.Timestamp;
 import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,6 +19,7 @@ import pers.sdd.online.exam.ajax.bean.AjaxResult;
 import pers.sdd.online.exam.bean.PaperPostBean;
 import pers.sdd.online.exam.bean.StudentClass;
 import pers.sdd.online.exam.bean.TeacherPaper;
+import pers.sdd.online.exam.service.GradeService;
 import pers.sdd.online.exam.service.PaperPostService;
 import pers.sdd.online.exam.service.PaperService;
 import pers.sdd.online.exam.service.StudentClassService;
@@ -35,6 +39,8 @@ public class ExamController {
 	private PaperPostService paperPostService;
 	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	private GradeService gradeService;
 
 	@RequestMapping("startExam")
 	public ModelAndView startExam(@RequestParam("paperId") String paperId){
@@ -173,5 +179,32 @@ public class ExamController {
 		}
 
 		return result;
+	}
+	
+	@ResponseBody
+	@RequestMapping("submitPaper")
+	public Object submitPaper(String paperId, String userId){
+	
+		AjaxResult result = new AjaxResult();
+		
+		System.out.println(paperId + " " + userId);
+		
+		try {
+			int grade = (int) (Math.random() * 40) + 60; 
+			HashMap<String, Object> hash = new ModelMap();
+			hash.put("paperId", paperId);
+			hash.put("stuId", userId);
+			hash.put("score", grade);
+			gradeService.insertGrade(hash);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		return result;
+	}
+	
+	@RequestMapping("success")
+	public String success(){
+		return "student/exam/success";
 	}
 }

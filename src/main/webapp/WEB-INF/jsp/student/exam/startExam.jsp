@@ -5,10 +5,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
 <meta name="google" content="notranslate">
-<title>考试示例</title>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-<link rel="shortcut icon" href="https://s0.kaoshixing.com/static/base/images/new_logo.ico">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -219,19 +217,17 @@ u, i, strike, font {
 <body>
 	<div class="main exam-mode" style="padding-left: 10%;">
 		<div class="header-wrapper">
-			<div class="exam-name ellipsis">考试示例</div>
+			<div class="exam-name ellipsis">答题界面</div>
 			<div class="user ellipsis">
-				<i class="icon icon-a_nav_my"></i> 孟庆宇
+				<i class="icon icon-a_nav_my"></i>
 			</div>
 
-			<a type="button" class="btn btn-default logout" id="logoutBtn"> <i class="icon icon-a_btn_sign_out btn-icon-left"></i> 退出
-			</a>
 
 		</div>
 		<div class="body-wrapper">
 			<div class="body paper">
 				<div class="questions">
-					<div class="questions-title" id="">单选题(共xx题，合计xxx分)</div>
+					<div class="questions-title" id="">单选题</div>
 					<div class="questions-content" id="selectShow"></div>
 				</div>
 			</div>
@@ -239,7 +235,7 @@ u, i, strike, font {
 		<div class="body-wrapper">
 			<div class="body paper">
 				<div class="questions">
-					<div class="questions-title" id="">判断题(共xx题，合计xxx分)</div>
+					<div class="questions-title" id="">判断题</div>
 					<div class="questions-content" id="judgeShow"></div>
 				</div>
 			</div>
@@ -323,33 +319,29 @@ u, i, strike, font {
 		}
 	
 		function submit() {
-			var selectTrueSum = 0;
-			var selectSum = 0;
-			for (var i = 0; i < selectTopic.length; i++) {
-				var index = i * 4 + selectTopic[i].resTrue;
-				var res = $("#" + index).find("input").prop("checked");
-				if (res == true) {
-					selectTrueSum++;
+			layer.confirm("确认提交试卷吗？", {
+				icon : 3,
+				title : '提示'
+			}, function(cindex) {
+				submitPaper();
+				layer.close(cindex);
+			}, function(cindex) {
+				layer.close(cindex);
+			});
+		}
+	
+		function submitPaper() {
+			$.ajax({
+				type : "POST",
+				url : "${APP_PATH}/exam/submitPaper",
+				data : {
+					"paperId" : "${paperId}",
+					"userId" : "${loginUser.userId}"
+				},
+				success : function(result) {
+					window.location.href="${APP_PATH}/exam/success";			
 				}
-				var resLen = selectTopic[i].res4 == null ? 3 : 4;
-				for (var j = 0; j < resLen; j++) {
-					if ($("#" + (i * 4 + j)).find("input").prop("checked") == true) {
-						selectSum++ ;
-					}
-				}
-			}
-			
-			if (selectTopic != null && sum != selectTopic.length) {
-				layer.confirm("您还有，" + (selectTopic.length - sum) + "道选择题未解答，确认提交吗？", {
-					icon : 3,
-					title : '提示'
-				}, function(cindex) {
-					submitPaper(sum)
-					layer.close(cindex);
-				}, function(cindex) {
-					layer.close(cindex);
-				});
-			}
+			});
 		}
 	
 		function backTrim(id) {

@@ -18,8 +18,7 @@ public class IndexUIController {
 
 	@Autowired
 	private UserService userService;
-	
-	
+
 	@RequestMapping("login")
 	public String login() {
 		return "index/login";
@@ -30,6 +29,11 @@ public class IndexUIController {
 		return "index/register";
 	}
 
+	@RequestMapping("forgetPasswd")
+	public String forgetPasswd() {
+		return "index/forgetPasswd";
+	}
+
 	@ResponseBody
 	@RequestMapping("doRegister")
 	public Object doRegister(UserBean user) {
@@ -37,32 +41,32 @@ public class IndexUIController {
 
 		UserBean queryUser = userService.queryUserById(user.getUserId());
 
-		if (queryUser == null){
+		if (queryUser == null) {
 			user.setUserPasswd(MD5Util.digest(user.getUserPasswd()));
 			userService.insertUser(user);
 			result.setSuccess(true);
-		}else{
+		} else {
 			result.setSuccess(false);
 		}
 		return result;
 
 	}
-	
+
 	@ResponseBody
 	@RequestMapping("doLogin")
-	public Object doLogin(UserBean user, HttpSession session){
+	public Object doLogin(UserBean user, HttpSession session) {
 		AjaxResult result = new AjaxResult();
-		
+
 		user.setUserPasswd(MD5Util.digest(user.getUserPasswd()));
 		UserBean queryUser = userService.vertifyLoginUser(user);
-		if (queryUser == null){
+		if (queryUser == null) {
 			result.setSuccess(false);
-		}else{
+		} else {
 			result.setSuccess(true);
 			result.setData(queryUser.getUserType());
 			session.setAttribute("loginUser", queryUser);
 		}
-		
+
 		return result;
 	}
 }

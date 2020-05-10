@@ -42,7 +42,7 @@ table tbody td:nth-child(even) {
 						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 考试管理<span class="badge" style="float:right">3</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/exam/student/getPost"><i class="glyphicon glyphicon-check"></i>个人考试信息</a></li>
-								<li style="height:30px;"><a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 查看个人成绩</a></li>
+								<li style="height:30px;"><a href="${APP_PATH}/grade/myGrade"><i class="glyphicon glyphicon-check"></i> 查看个人成绩</a></li>
 							</ul></li>
 					</ul>
 				</div>

@@ -201,7 +201,7 @@ table tbody td:nth-child(even) {
 						var data = datas[i];
 						context += '<tr>';
 						context += '	<td>' + (i + 1) + '</td>';
-						context += '	<td>' + data.papId.toString(16) + '</td>';
+						context += '	<td>' + data.papId + '</td>';
 						context += '	<td>' + data.paperName + '</td>';
 						context += '	<td>' + data.teaId + '</td>';
 						context += '	<td>' + data.majName + '</td>';

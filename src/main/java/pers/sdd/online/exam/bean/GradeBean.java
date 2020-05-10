@@ -13,10 +13,10 @@ import lombok.Setter;
 @Data
 public class GradeBean {
 
-	private String userId;
 	private Integer papId;
 	private String stuId;
-	private String claId;
 	private Integer papScore;
-	private String couName;
+	
+	private String courseName;
+	private String paperName;
 }
