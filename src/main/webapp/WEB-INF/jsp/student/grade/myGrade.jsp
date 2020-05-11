@@ -39,10 +39,10 @@ table tbody td:nth-child(even) {
 								<li style="height:30px;"><a href="${APP_PATH}/class/studentClassList"><i class="glyphicon glyphicon-king">加入班级</i> </a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/student/studentJoinList"><i class="glyphicon glyphicon-lock"></i> 退出班级</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 考试管理<span class="badge" style="float:right">3</span></span>
-							<ul style="margin-top:10px;display:none;">
+						<li class="list-group-item "><span><i class="glyphicon glyphicon-ok"></i> 考试管理<span class="badge" style="float:right">3</span></span>
+							<ul style="margin-top:10px;">
 								<li style="height:30px;"><a href="${APP_PATH}/exam/student/getPost"><i class="glyphicon glyphicon-check"></i>个人考试信息</a></li>
-								<li style="height:30px;"><a href="${APP_PATH}/grade/myGrade"><i class="glyphicon glyphicon-check"></i> 查看个人成绩</a></li>
+								<li style="height:30px;"><a href="${APP_PATH}/grade/myGrade" style="color: red;"><i class="glyphicon glyphicon-check"></i> 查看个人成绩</a></li>
 							</ul></li>
 					</ul>
 				</div>

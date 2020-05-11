@@ -34,7 +34,6 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<div class="tree">
 					<ul style="padding-left:0px;" class="list-group">
-						<li class="list-group-item tree-closed"><a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a></li>
 						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon glyphicon-tasks"></i> 学生管理<span class="badge" style="float:right">3</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/class/classList"><i class="glyphicon glyphicon-king"></i> 班级管理 </a></li>
@@ -47,7 +46,6 @@
 								<li style="height:30px;"><a href="${APP_PATH}/paper/teacher/importPaper"><i class="glyphicon glyphicon-lock"></i> 导入试卷</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/paper/teacher/paperFavorites"><i class="glyphicon glyphicon-lock"></i> 我的试卷</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><a href="param.html"><i class="glyphicon glyphicon-list-alt"></i> 参数管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -293,16 +291,20 @@
 				loadSelectEdit()
 			} else if (topicType == 1 && index != registerInfo2.judgeArray.length - 1) {
 				registerInfo2.judgeArray.splice(index + 2, 0, registerInfo2.judgeArray[index]);
-				registerInfo2.judgeArray.splice(index , 1);
+				registerInfo2.judgeArray.splice(index, 1);
 				sessionStorage.setItem('paper_step2_info', JSON.stringify(registerInfo2));
 				loadJudgeEdit()
 			}
-			
+	
 		}
 	
 		$("#nextButton").click(function() {
-			if (registerInfo2.selectArray.length == 0 || registerInfo2.judgeArray == 0){
-				layer.msg("存在未添加试题的题型", {time : 2000,icon : 5,shift : 6}, function() {});
+			if (registerInfo2.selectArray.length == 0 || registerInfo2.judgeArray == 0) {
+				layer.msg("存在未添加试题的题型", {
+					time : 2000,
+					icon : 5,
+					shift : 6
+				}, function() {});
 				return;
 			}
 			window.location.href = '${APP_PATH}/paper/paperEdit/step3';

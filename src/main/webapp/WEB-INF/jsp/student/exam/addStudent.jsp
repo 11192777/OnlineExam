@@ -27,37 +27,35 @@
 			<div class="col-sm-3 col-md-2 sidebar">
 				<div class="tree">
 					<ul style="padding-left:0px;" class="list-group">
-						<li class="list-group-item tree-closed"><a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon glyphicon-user"></i> 用户管理 <span class="badge" style="float:right">3</span></span>
-							<ul style="margin-top:10px;display:none;">
-								<li style="height:30px;"><a href="${APP_PATH}/student/studentList"><i class="glyphicon glyphicon-user"></i> 学生管理</a></li>
+						<li class="list-group-item "><span><i class="glyphicon glyphicon glyphicon-user"></i> 用户管理 <span class="badge" style="float:right">2</span></span>
+							<ul style="margin-top:10px;">
+								<li style="height:30px;"><a href="${APP_PATH}/student/studentList" style="color: red;"><i class="glyphicon glyphicon-user"></i> 学生管理</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/teacher/teacherList"><i class="glyphicon glyphicon-king"></i> 教师管理</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 试卷管理 <span class="badge" style="float:right">3</span></span>
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 试卷管理 <span class="badge" style="float:right">2</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/paper/paperList"><i class="glyphicon glyphicon-check"></i> 试卷列表</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/paper/importPaper"><i class="glyphicon glyphicon-check"></i> 导入试卷</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 题库管理 <span class="badge" style="float:right">3</span></span>
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 题库管理 <span class="badge" style="float:right">2</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/manager/itemBank/itemList"><i class="glyphicon glyphicon-check"></i> 试题列表</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/manager/itemBank/itemAdd"><i class="glyphicon glyphicon-check"></i> 添加试题</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 成绩管理 <span class="badge" style="float:right">3</span></span>
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 成绩管理 <span class="badge" style="float:right">2</span></span>
 							<ul style="margin-top:10px;display:none;">
-								<li style="height:30px;"><a href="auth_cert.html"><i class="glyphicon glyphicon-check"></i> 学生成绩查看</a></li>
+								<li style="height:30px;"><a href="${APP_PATH}/grade/allGrade"><i class="glyphicon glyphicon-check"></i> 学生成绩查看</a></li>
 								<li style="height:30px;"><a href="auth_adv.html"><i class="glyphicon glyphicon-check"></i> 成绩单打印</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 学年管理 <span class="badge" style="float:right">3</span></span>
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-ok"></i> 学年管理 <span class="badge" style="float:right">2</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/major/majorList"><i class="glyphicon glyphicon-check"></i> 专业管理</a></li>
 								<li style="height:30px;"><a href="${APP_PATH}/class/managerClassList"><i class="glyphicon glyphicon-check"></i> 班级管理</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-th-large"></i> 学科管理 <span class="badge" style="float:right">7</span></span>
+						<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon-th-large"></i> 学科管理 <span class="badge" style="float:right">1</span></span>
 							<ul style="margin-top:10px;display:none;">
 								<li style="height:30px;"><a href="${APP_PATH}/course/courseList"><i class="glyphicon glyphicon-picture"></i> 科目管理</a></li>
 							</ul></li>
-						<li class="list-group-item tree-closed"><a href="param.html"><i class="glyphicon glyphicon-list-alt"></i> 参数管理</a></li>
 					</ul>
 				</div>
 			</div>
@@ -145,7 +143,7 @@
 					}
 				}
 			});
-			
+	
 			var majorContext = "";
 			$.ajax({
 				type : "POST",
@@ -158,10 +156,10 @@
 							majorContext += '<option value="' + major.majName + '">' + major.majName + '</option>';
 						}
 						$("#majorSelect").html(majorContext);
-					} 
+					}
 				}
 			});
-			
+	
 			var classContext = "";
 			$.ajax({
 				type : "POST",
@@ -174,7 +172,7 @@
 							majorContext += '<option value="' + major.claName + '">' + major.claName + '</option>';
 						}
 						$("#classSelect").html(classContext);
-					} 
+					}
 				}
 			});
 	
@@ -189,21 +187,27 @@
 				var sex = $("#sex").val()
 				var major = $("#majorSelect").val()
 				var grade = $("#grade").val()
-				
+	
 				if (userId == "") {
-					layer.msg("账号不为空", {time : 1000,icon : 5,shift : 6
+					layer.msg("账号不为空", {
+						time : 1000,
+						icon : 5,
+						shift : 6
 					}, function() {
 						$("#userId").focus();
-					}) 
+					})
 					return;
-				}else if (!userIdVerify(userId)){
-					layer.msg("账号格式错误", {time : 1000,icon : 5,shift : 6
-						}, function() {
-							$("#userId").focus();
-					}) 
+				} else if (!userIdVerify(userId)) {
+					layer.msg("账号格式错误", {
+						time : 1000,
+						icon : 5,
+						shift : 6
+					}, function() {
+						$("#userId").focus();
+					})
 					return;
 				}
-				
+	
 				var index = 0;
 				$.ajax({
 					type : "POST",
@@ -216,24 +220,32 @@
 						"stuGrade" : grade,
 					},
 					beforeSend : function() {
-						index = layer.load(2, { time : 10 * 1000});
+						index = layer.load(2, {
+							time : 10 * 1000
+						});
 					},
 					success : function(result) {
 						layer.close(index);
 						if (result.success) {
-							layer.msg("添加成功", {time : 1000,icon : 6,shift : 5
+							layer.msg("添加成功", {
+								time : 1000,
+								icon : 6,
+								shift : 5
 							}, function() {
 								window.location.href = "${APP_PATH}/student/studentList"
 							})
 						} else {
-							layer.msg("添加失败", {time : 1000,icon : 5,shift : 6
+							layer.msg("添加失败", {
+								time : 1000,
+								icon : 5,
+								shift : 6
 							}, function() {})
 						}
 					}
 				});
 			});
 		});
-		
+	
 		function userIdVerify(userid) {
 			let reg = /^[0-9a-zA-Z]{4,10}$/;
 			return reg.test(userid);

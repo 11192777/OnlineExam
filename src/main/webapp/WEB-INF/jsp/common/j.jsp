@@ -2,7 +2,6 @@
 <div class="col-sm-3 col-md-2 sidebar">
 	<div class="tree">
 		<ul style="padding-left:0px;" class="list-group">
-			<li class="list-group-item tree-closed"><a href="main.html"><i class="glyphicon glyphicon-dashboard"></i> 控制面板</a></li>
 			<li class="list-group-item tree-closed"><span><i class="glyphicon glyphicon glyphicon-tasks"></i> 学生管理<span class="badge" style="float:right">3</span></span>
 				<ul style="margin-top:10px;display:none;">
 					<li style="height:30px;"><a href="${APP_PATH}/class/classList"><i class="glyphicon glyphicon-king"></i> 班级管理 </a></li>
